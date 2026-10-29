@@ -1,0 +1,31 @@
+
+Running 10 tests using 1 worker
+
+Terminate batch job (Y/N)?   ✘   1 [chromium] › tests\02-patient\appointment-booking.spec.ts:31:7 › Patient - Doctor Appointment Booking Flow › TC-PAT-APT-01: คนไข้เลือกวัน-เวลาออกตรวจ กรอกอาการเบื้องต้น และยืนยันการจองคิวแพทย์สำเร็จ (5.7s)
+
+
+  1) [chromium] › tests\02-patient\appointment-booking.spec.ts:31:7 › Patient - Doctor Appointment Booking Flow › TC-PAT-APT-01: คนไข้เลือกวัน-เวลาออกตรวจ กรอกอาการเบื้องต้น และยืนยันการจองคิวแพทย์สำเร็จ 
+
+    Test was interrupted.
+
+    Error: ล็อกอิน Patient ไม่สำเร็จด้วย patient@novaria.com — ยังอยู่ที่ https://novaria-hospital.tech/login — ข้อความบนหน้า: (ไม่พบข้อความ error บนหน้า)
+
+      17 |       .innerText()
+      18 |       .catch(() => '(ไม่พบข้อความ error บนหน้า)');
+    > 19 |     throw new Error(
+         |           ^
+      20 |       `ล็อกอิน Patient ไม่สำเร็จด้วย ${process.env.TEST_PATIENT_EMAIL || 'patient@novaria.com'} — ยังอยู่ที่ ${page.url()} — ข้อความบนหน้า: ${pageMessage}`
+      21 |     );
+      22 |   }
+        at loginAsPatient (D:\hos\tests\02-patient\appointment-booking.spec.ts:19:11)
+        at D:\hos\tests\02-patient\appointment-booking.spec.ts:28:5
+
+    Error: browserContext.close: Protocol error (Target.disposeBrowserContext): Failed to find context with id 0243CC5D99AA4D8F3DDE4D96CCCBA234
+
+    Error Context: test-results\02-patient-appointment-boo-c673b-ะยืนยันการจองคิวแพทย์สำเร็จ-chromium\error-context.md
+
+  1 interrupted
+    [chromium] › tests\02-patient\appointment-booking.spec.ts:31:7 › Patient - Doctor Appointment Booking Flow › TC-PAT-APT-01: คนไข้เลือกวัน-เวลาออกตรวจ กรอกอาการเบื้องต้น และยืนยันการจองคิวแพทย์สำเร็จ 
+  9 did not run
+
+^C

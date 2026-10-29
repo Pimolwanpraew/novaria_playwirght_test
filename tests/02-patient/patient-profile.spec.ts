@@ -3,17 +3,19 @@ import { test, expect } from '@playwright/test';
 test.describe('Patient - Profile Management', () => {
 
   test.beforeEach(async ({ page }) => {
-    const patientEmail = process.env.TEST_PATIENT_EMAIL || 'patient@example.com';
-    const patientPassword = process.env.TEST_PATIENT_PASSWORD || 'Patient123!';
+    // 🟢 แก้ไขค่า Fallback ให้ตรงกับ Credential จริงในระบบ
+    const patientEmail = process.env.TEST_PATIENT_EMAIL || 'patient@novaria.com';
+    const patientPassword = process.env.TEST_PATIENT_PASSWORD || 'patient123';
 
-    await page.goto('/login');
+    await page.goto('/login', { waitUntil: 'domcontentloaded' });
 
-    await page.getByPlaceholder(/อีเมล|Email/i).fill(patientEmail);
-    await page.getByPlaceholder(/รหัสผ่าน|Password/i).fill(patientPassword);
+    // ใช้ Locator ที่ครอบคลุมทั้ง Placeholder และ Selector ทั่วไป
+    await page.locator('input[type="email"], input[name="email"]').first().fill(patientEmail);
+    await page.locator('input[type="password"], input[name="password"]').first().fill(patientPassword);
 
-    // แก้ไข: ใช้ button[type="submit"] เจาะจงเฉพาะปุ่มกดส่งฟอร์มล็อกอิน
     await page.locator('button[type="submit"]').first().click();
 
+    // รอให้ระบบล็อกอินและสตรีมเซสชันเสร็จสิ้น
     await page.waitForTimeout(1500);
   });
 

@@ -2,13 +2,16 @@ import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 
-// โหลดค่า Environment Variables จากไฟล์ .env
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+// โหลดค่า Environment Variables จากไฟล์ .env และบังคับ override ค่าเดิม
+dotenv.config({ path: path.resolve(__dirname, '.env'), override: true });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  // กำหนดสคริปต์รันสร้างผู้ใช้งานอัตโนมัติก่อนเริ่มรัน 129 เทสทั้งหมด
+  globalSetup: path.resolve(__dirname, 'tests/global-setup.ts'),
+
   // กำหนดโฟลเดอร์เก็บไฟล์ทดสอบ
   testDir: './tests',
   
