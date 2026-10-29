@@ -1,7 +1,8 @@
-FROM node:20-alpine AS base
+FROM node:20-slim AS base
+
+RUN apt-get update -y && apt-get install -y openssl
 
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json* bun.lockb* ./
 RUN npm ci
@@ -15,7 +16,8 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ARG DATABASE_URL
 ENV DATABASE_URL=$DATABASE_URL
 
-RUN npx prisma generate
+# ชี้ path ไปที่ src/prisma/schema.prisma
+RUN npx prisma generate --schema=./src/prisma/schema.prisma
 RUN npm run build
 
 FROM base AS runner
@@ -29,7 +31,9 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+
+# แก้ไข path จาก /app/prisma เป็น /app/src/prisma
+COPY --from=builder --chown=nextjs:nodejs /app/src/prisma ./src/prisma
 
 USER nextjs
 
