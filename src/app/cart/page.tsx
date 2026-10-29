@@ -28,14 +28,27 @@ export default function CartPage() {
   };
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('novaria_cart');
-    if (savedCart) {
-      try {
-        setCartItems(JSON.parse(savedCart));
-      } catch (e) {
-        setCartItems([]);
+    // 💡 เช็กว่ามีการทำรายการชำระเงินเสร็จสิ้นจากหน้า checkout หรือไม่ ถ้ามีให้ล้างตะกร้าทิ้งทันที
+    const isCompleted = localStorage.getItem('novaria_order_completed');
+    if (isCompleted === 'true') {
+      localStorage.removeItem('novaria_cart');
+      localStorage.removeItem('novaria_checkout_data');
+      localStorage.removeItem('novaria_order_completed');
+      setCartItems([]);
+    } else {
+      // โหลดข้อมูลตะกร้าปกติ
+      const savedCart = localStorage.getItem('novaria_cart');
+      if (savedCart) {
+        try {
+          setCartItems(JSON.parse(savedCart));
+        } catch (e) {
+          setCartItems([]);
+        }
       }
     }
+
+    // ล้างข้อมูล checkout data เก่าที่ค้างคาป้องกันการดึงซ้ำ
+    localStorage.removeItem('novaria_checkout_data');
 
     // ดึงข้อมูลผู้ใช้สิทธิ์สมาชิกลงชื่อเข้าใช้
     const user = localStorage.getItem('user');
@@ -43,7 +56,6 @@ export default function CartPage() {
       try {
         const parsedUser = JSON.parse(user);
         setIsLoggedIn(true);
-        // ดึงชื่อ นามสกุล หรือชื่อผู้ใช้อัตโนมัติ
         const fullName = parsedUser.firstName && parsedUser.lastName 
           ? `${parsedUser.firstName} ${parsedUser.lastName}` 
           : parsedUser.firstName || parsedUser.name || '';
@@ -125,6 +137,10 @@ export default function CartPage() {
     };
 
     localStorage.setItem('novaria_checkout_data', JSON.stringify(checkoutData));
+    
+    // 💡 เคลียร์สินค้าในตะกร้าหลักทันทีเมื่อกดส่งข้อมูลมาหน้าชำระเงิน
+    localStorage.removeItem('novaria_cart');
+    window.dispatchEvent(new Event('cartUpdated'));
 
     // ไปหน้า /checkout
     router.push('/checkout');
