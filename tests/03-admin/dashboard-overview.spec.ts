@@ -1,41 +1,35 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Admin Dashboard - Overview & Metric Cards', () => {
+test.describe('Admin Dashboard - Overview & Portal Menu', () => {
 
   test.beforeEach(async ({ page }) => {
-    const adminEmail = process.env.TEST_ADMIN_EMAIL || 'admin@novaria.com';
-    const adminPassword = process.env.TEST_ADMIN_PASSWORD || 'admin123';
-
     await page.goto('/login');
-    await page.locator('input[type="email"], input[name="email"]').fill(adminEmail);
-    await page.locator('input[type="password"], input[name="password"]').fill(adminPassword);
+    await page.getByPlaceholder(/อีเมล|Email/i).fill(process.env.TEST_ADMIN_EMAIL || 'admin@novaria.com');
+    await page.getByPlaceholder(/รหัสผ่าน|Password/i).fill(process.env.TEST_ADMIN_PASSWORD || 'admin123');
     await page.locator('button[type="submit"]').first().click();
 
-    await page.waitForURL('**/status(admin)/**', { timeout: 10000 });
+    // 🎯 อัปเดต URL เป็น /admin/main ตาม UI จริง
+    await page.waitForURL(/\/admin\/main/);
   });
 
-  test('TC-ADM-DASH-01: โหลดหน้า Dashboard สำเร็จและแสดงปุ่ม/ส่วนประกอบหลักครบถ้วน', async ({ page }) => {
-    await page.goto('/status(admin)/dashboard');
-    await expect(page.locator('main').first()).toBeVisible();
-    await expect(page.locator('header').first()).toBeVisible();
-  });
+  test('TC-ADM-DASH-01: โหลดหน้า Admin Portal สำเร็จ และแสดงข้อความต้อนรับ Admin', async ({ page }) => {
+    await page.goto('/admin/main');
 
-  test('TC-ADM-DASH-02: ตรวจสอบการแสดงผล Metric Cards (สรุปยอดผู้ป่วย/นัดหมายประจำวัน)', async ({ page }) => {
-    await page.goto('/status(admin)/dashboard');
+    // ตรวจสอบข้อความต้อนรับ Admin
+    await expect(page.locator('text=/สวัสดี.*Admin/i').first()).toBeVisible();
     
-    // แก้ไข: กรองเอาเฉพาะ Element ที่มองเห็นจริงบนหน้าจอเท่านั้น (:visible)
-    const visibleCards = page.locator('main div:visible, .card:visible, div[class*="stat"]:visible').first();
-    await expect(visibleCards).toBeVisible();
+    // ตรวจสอบส่วนเมนูหลัก
+    await expect(page.locator('text="จัดการข้อมูลโรงพยาบาล"').first()).toBeVisible();
   });
 
-  test('TC-ADM-DASH-03: ตรวจสอบการกด Refresh Data หรือสลับดูช่วงเวลาสถิติ', async ({ page }) => {
-    await page.goto('/status(admin)/dashboard');
-    
-    const refreshBtn = page.locator('button:has-text("รีเฟรช"), button:has-text("Refresh"), button:has(svg.lucide-refresh-cw)').first();
-    if (await refreshBtn.isVisible()) {
-      await refreshBtn.click();
-    }
-    await expect(page.locator('main').first()).toBeVisible();
+  test('TC-ADM-DASH-02: ตรวจสอบการแสดงผลการ์ดเมนูหลัก (แดชบอร์ดสถิติ & จัดการและจัดสรรคิว)', async ({ page }) => {
+    await page.goto('/admin/main');
+
+    const statsCard = page.locator('text="แดชบอร์ดสถิติ"').first();
+    const queueCard = page.locator('text="จัดการและจัดสรรคิว"').first();
+
+    await expect(statsCard).toBeVisible();
+    await expect(queueCard).toBeVisible();
   });
 
 });

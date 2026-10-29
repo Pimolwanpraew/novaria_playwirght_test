@@ -7,18 +7,17 @@ test.describe('Admin - Appointment Management Suite', () => {
     await page.getByPlaceholder(/อีเมล|Email/i).fill(process.env.TEST_ADMIN_EMAIL || 'admin@novaria.com');
     await page.getByPlaceholder(/รหัสผ่าน|Password/i).fill(process.env.TEST_ADMIN_PASSWORD || 'admin123');
     await page.locator('button[type="submit"]').first().click();
-    await page.waitForURL(/\/dashboard/);
+
+    // 🎯 เปลี่ยนเป็น /admin/main
+    await page.waitForURL(/\/admin\/main/);
   });
 
-  // -------------------------------------------------------------------------
-  // 🟢 TC-ADM-APT: การจัดการนัดหมาย
-  // -------------------------------------------------------------------------
-  test('TC-ADM-APT-01: แอดมินตรวจสอบคิวนัดหมายทั้งหมดประจำวันบน Dashboard', async ({ page }) => {
-    await page.goto('/dashboard');
+  test('TC-ADM-APT-01: แอดมินพบเมนู "จัดการและจัดสรรคิว" บนหน้า Admin Main Portal', async ({ page }) => {
+    await page.goto('/admin/main');
     
-    // ตรวจสอบพื้นที่แสดงคิวนัดหมายบน Dashboard
-    const appointmentSection = page.locator('main section, div:has-text("นัดหมาย"), table').first();
-    await expect(appointmentSection).toBeVisible();
+    // ตรวจสอบการ์ดจัดการคิวบน UI จริง
+    const queueCard = page.locator('text="จัดการและจัดสรรคิว"').first();
+    await expect(queueCard).toBeVisible();
   });
 
 });
