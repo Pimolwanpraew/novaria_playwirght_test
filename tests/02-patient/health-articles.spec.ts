@@ -1,15 +1,15 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Public - Health Info & Articles', () => {
-
-  test('TC-PUB-ART-01: เรียกดูบทความข้อมูลสุขภาพและอ่านรายละเอียด', async ({ page }) => {
-    await page.goto('/health-info'); // หน้าข้อมูลสุขภาพ
-
-    const readMoreLink = page.locator('a:has-text("อ่านเพิ่มเติม")').first();
-    if (await readMoreLink.isVisible()) {
-      await readMoreLink.click();
-    }
-    await expect(page.locator('main').first()).toBeVisible();
+test.describe('ทดสอบหน้าบทความและสาระสุขภาพ', () => {
+  test('TC-ART-01: ผู้ใช้สามารถเข้าสู่หน้าบทความสุขภาพและเห็นรายการบทความ', async ({ page }) => {
+    await page.goto('/health');
+    
+    // ใช้ Regex เผื่อมีคำอื่นคั่นกลาง
+    await expect(page.locator('h1', { hasText: /บทความ.*สุขภาพ/ })).toBeVisible();
+    
+    await expect(page.getByText('ความดันโลหิตสูง', { exact: false }).first()).toBeVisible();
+    
+    const firstArticleButton = page.locator('text="ดูข้อมูลเพิ่มเติม"').first();
+    await firstArticleButton.click();
   });
-
 });
