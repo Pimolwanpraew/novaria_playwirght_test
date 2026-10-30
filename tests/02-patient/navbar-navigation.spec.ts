@@ -1,3 +1,4 @@
+/*ทดสอบการนำทางเมนูหลัก (Navbar Dropdown Menus) ของเว็บไซต์สำหรับผู้ป่วย*/
 import { test, expect } from '@playwright/test';
 
 test.describe('ตรวจสอบการนำทางเมนูหลัก (Navbar Dropdown Menus)', () => {

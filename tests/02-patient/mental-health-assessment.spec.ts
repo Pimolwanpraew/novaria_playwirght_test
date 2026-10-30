@@ -1,3 +1,4 @@
+/*ทดสอบระบบแบบประเมินสุขภาพใจของผู้ป่วย*/
 import { test, expect } from '@playwright/test';
 
 test.describe('ทดสอบระบบแบบประเมินสุขภาพใจ', () => {

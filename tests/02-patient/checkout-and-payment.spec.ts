@@ -1,3 +1,4 @@
+/*ทดสอบกระบวนการชำระเงินของผู้ป่วย*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Patient - Checkout & Payment Process', () => {

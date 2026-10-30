@@ -1,3 +1,4 @@
+/*ทดสอบการเข้าถึงและเรียกดูหน้าจัดการข่าวสารและบทความของระบบสำหรับแอดมิน*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Admin - News Management (E2E)', () => {

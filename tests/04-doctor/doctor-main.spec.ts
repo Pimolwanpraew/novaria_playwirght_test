@@ -1,3 +1,4 @@
+/*ทดสอบหน้าหลัก/ระบบทำงานของแพทย์*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Doctor - Main Hub & Landing Page Navigation', () => {

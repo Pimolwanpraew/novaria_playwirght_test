@@ -1,3 +1,4 @@
+/*ทดสอบการเข้าถึงและเรียกดูหน้าคิวตรวจผู้ป่วยของระบบสำหรับแพทย์*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Doctor - Queue Management Dashboard', () => {

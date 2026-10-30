@@ -1,3 +1,4 @@
+/*ทดสอบฟังก์ชันการจองนัดหมายแพทย์*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Patient Workflow - Appointment Booking', () => {

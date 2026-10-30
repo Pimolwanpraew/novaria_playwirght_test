@@ -1,3 +1,4 @@
+/*  ทดสอบการเข้าถึงและเรียกดูหน้าการจัดการเลย์เอาต์และเมนูนำทางของระบบสำหรับแอดมิน */
 import { test, expect } from '@playwright/test';
 
 test.describe('Admin - Layout & Navigation UI', () => {

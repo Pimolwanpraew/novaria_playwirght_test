@@ -1,3 +1,4 @@
+/*ทดสอบหน้าหลักและการค้นหาแพทย์ของผู้ป่วย*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Patient - Home & Doctor Search Workflow', () => {

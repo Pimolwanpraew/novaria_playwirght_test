@@ -1,3 +1,4 @@
+/*ทดสอบระบบจัดการแพ็กเกจและโปรโมชันสุขภาพ*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Admin - Package Management (E2E)', () => {

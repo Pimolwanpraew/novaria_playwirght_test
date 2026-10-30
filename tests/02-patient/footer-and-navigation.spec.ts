@@ -1,3 +1,4 @@
+/*ทดสอบส่วนท้ายและการนำทางของเว็บไซต์สำหรับผู้ป่วย*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Public - Footer Links & Accreditations', () => {

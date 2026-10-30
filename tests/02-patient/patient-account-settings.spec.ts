@@ -1,3 +1,4 @@
+/*ทดสอบการตั้งค่าบัญชีและความปลอดภัยของผู้ป่วย*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Patient Workflow - Account & Security Settings', () => {

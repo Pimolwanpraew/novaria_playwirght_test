@@ -1,3 +1,4 @@
+/*ทดสอบการตอบสนองเมื่อเข้าหน้าเพจที่ไม่มีอยู่จริง (404 Page)*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Security & Global - 404 Route Not Found Handling', () => {

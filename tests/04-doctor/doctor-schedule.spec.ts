@@ -1,3 +1,4 @@
+/*ทดสอบการเข้าถึงและเรียกดูหน้าตารางออกตรวจและความพร้อมของแพทย์*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Doctor - Work Schedule & Availability', () => {

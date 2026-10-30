@@ -1,3 +1,4 @@
+/*ทดสอบการเพิ่มแพ็กเกจลงตะกร้าและการชำระเงินของผู้ป่วย*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Patient Workflow - Cart & Package Checkout', () => {

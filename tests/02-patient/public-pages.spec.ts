@@ -1,3 +1,4 @@
+/*ทดสอบหน้าสาธารณะของเว็บไซต์สำหรับผู้ป่วย (Public Pages)*/
 import { test, expect, Page } from '@playwright/test';
 
 /**

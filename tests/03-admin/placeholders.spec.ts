@@ -1,3 +1,4 @@
+/*ทดสอบการเข้าถึงและเรียกดูหน้าจัดการฟีเจอร์ขั้นสูงและระบบตรวจสอบของระบบสำหรับแอดมิน*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Admin - Advanced & System Audit Features', () => {

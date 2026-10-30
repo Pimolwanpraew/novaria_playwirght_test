@@ -1,3 +1,4 @@
+/*ทดสอบส่วนต่างๆ ของหน้าแรกสำหรับผู้ป่วย*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Public - Home Page Sections', () => {

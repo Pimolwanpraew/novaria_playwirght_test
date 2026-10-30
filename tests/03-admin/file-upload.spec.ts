@@ -1,3 +1,4 @@
+/*ทดสอบการอัปโหลดไฟล์รูปภาพหรือเอกสารเข้าสู่ระบบสำหรับแอดมิน*/
 import { test, expect } from '@playwright/test';
 import path from 'path';
 

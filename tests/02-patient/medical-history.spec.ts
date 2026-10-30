@@ -1,3 +1,4 @@
+/*ทดสอบการเข้าถึงและเรียกดูประวัติการรักษาและใบนัดหมายย้อนหลังของผู้ป่วย*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Patient Workflow - Medical Records & History', () => {

@@ -1,3 +1,4 @@
+/*ทดสอบการเข้าถึงและเรียกดูประวัติการรักษาและผลตรวจทางห้องปฏิบัติการของผู้ป่วย*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Patient Workflow - Medical Records & Lab Results', () => {

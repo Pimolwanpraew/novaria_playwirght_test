@@ -1,3 +1,4 @@
+/*ทดสอบการเข้าถึงและเรียกดูหน้าสถิติและแดชบอร์ดภาพรวมของระบบสำหรับแอดมิน*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Admin - Analytics & System Audit Logs', () => {

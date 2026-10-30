@@ -1,3 +1,4 @@
+/*ทดสอบหน้าบทความและสาระสุขภาพ*/
 import { test, expect } from '@playwright/test';
 
 const READ_MORE = 'ดูข้อมูลเพิ่มเติม';

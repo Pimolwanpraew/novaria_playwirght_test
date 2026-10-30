@@ -1,3 +1,4 @@
+/*ทดสอบกระบวนการ/ขั้นตอนการนัดหมายตั้งแต่ต้นจนจบ*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Patient Workflow - Detailed Appointment Booking', () => {

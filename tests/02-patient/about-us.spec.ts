@@ -1,3 +1,4 @@
+/*เกี่ยวกับเรา*/
 import { test, expect } from '@playwright/test';
 
 test.describe('ทดสอบหน้าข้อมูลโรงพยาบาล', () => {

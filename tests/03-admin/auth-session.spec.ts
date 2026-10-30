@@ -1,3 +1,4 @@
+/*ทดสอบการเข้าถึงและเรียกดูหน้าการจัดการบัญชีผู้ใช้และเซสชันของระบบสำหรับแอดมิน*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Admin - Profile & Session Management', () => {

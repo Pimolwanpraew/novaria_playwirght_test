@@ -1,3 +1,4 @@
+/*ทดสอบการเข้าถึงและเรียกดูหน้าจัดการประวัติผู้ป่วยและการควบคุมระบบสำหรับแอดมิน*/
 import { test, expect } from '@playwright/test';
 
 test.describe('Admin - Patient Records & System Control', () => {
