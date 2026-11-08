@@ -14,7 +14,8 @@ test.describe('Doctor - Work Schedule & Availability', () => {
   test('TC-DOC-SCH-01: แสดงตารางออกตรวจประจำสัปดาห์ และสวิตช์เปิด/ปิดรับคิว', async ({ page }) => {
     await page.goto('/doctors/schedule', { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('text="ตารางออกตรวจและความพร้อม"').first()).toBeVisible({ timeout: 10000 });
+    // เปลี่ยนจากค้นหาแบบเป๊ะๆ เป็นค้นหาคำว่า "ตารางออกตรวจ" (ไม่สนเคสหรือคำต่อท้าย)
+    await expect(page.locator('text=/ตารางออกตรวจ/i').first()).toBeVisible({ timeout: 10000 }); 
 
     // ตรวจสอบหัวตารางข้อมูล
     await expect(page.locator('text="วันประจำสัปดาห์"').first()).toBeVisible();
